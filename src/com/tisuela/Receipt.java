@@ -16,7 +16,7 @@ public class Receipt {
 
 
     public String toString(){
-        String result = "";
+        String result = "--- Receipt ---\n";
         for (Item item: items){
             result += item.toString() + "\n";
         }

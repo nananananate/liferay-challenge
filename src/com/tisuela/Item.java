@@ -8,15 +8,18 @@ public class Item {
 
     private String name;
 
+    protected int amount;
+
     private BigDecimal price;
     protected BigDecimal taxRate = new BigDecimal(0.1);
     private BigDecimal salesTax;
     private BigDecimal fullPrice;
 
-    public Item(String name, BigDecimal price, BigDecimal taxRate){
+    public Item(String name, BigDecimal price, BigDecimal taxRate, int amount){
         this.name = name;
         this.price = price;
         this.taxRate = taxRate;
+        this.amount = amount;
 
         // set salesTax before fullPrice
         this.setSalesTax();
@@ -26,12 +29,12 @@ public class Item {
     }
 
     public Item(Item item){
-        this(item.name, item.price, item.taxRate);
+        this(item.name, item.price, item.taxRate, item.amount);
     }
 
-
-    public Item(String name, double price){
+    public Item(String name, double price, int amount){
         this.name = name;
+        this.amount = amount;
         this.price = new BigDecimal(price).setScale(
                 2,
                 RoundingMode.HALF_UP
@@ -42,6 +45,10 @@ public class Item {
 
         // after setting salesTax. set fullPrice
         this.setFullPrice();
+    }
+
+    public Item(String name, double price){
+        this(name, price, 1);
     }
 
 
@@ -73,10 +80,10 @@ public class Item {
     }
 
     public void setFullPrice() {
-        this.fullPrice = this.price.add(this.salesTax).setScale(
+        fullPrice = price.add(salesTax).setScale(
                 2,
                 RoundingMode.HALF_UP
-        );
+        ).multiply(new BigDecimal(amount));
     }
 
     public BigDecimal getPrice() {
@@ -100,6 +107,6 @@ public class Item {
     }
 
     public String toString(){
-        return name + " " + price + "\n" + "sales tax: " + salesTax + "\n------------";
+        return amount + " " + name + " " + price + "\n" + "sales tax: " + salesTax + "\n------------";
     }
 }
