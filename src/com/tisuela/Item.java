@@ -73,17 +73,29 @@ public class Item {
     }
 
     public void setSalesTax() {
-        this.salesTax = this.price.multiply(this.taxRate).setScale(
+        BigDecimal roundingIncrement = new BigDecimal(0.05);
+
+        BigDecimal unroundedSalesTax = this.price.multiply(this.taxRate);
+        //System.out.println(unroundedSalesTax);
+
+        // preparation to round up to the nearest increment (0.05)
+        BigDecimal dividedSalesTax = unroundedSalesTax.divide(roundingIncrement,0, RoundingMode.UP);
+        //System.out.println(dividedSalesTax);
+
+        // finalize rounding
+        this.salesTax = dividedSalesTax.multiply(roundingIncrement).setScale(
                 2,
                 RoundingMode.HALF_UP
         );
+
+
     }
 
     public void setFullPrice() {
-        fullPrice = price.add(salesTax).setScale(
+        fullPrice = price.add(salesTax).multiply(new BigDecimal(amount)).setScale(
                 2,
                 RoundingMode.HALF_UP
-        ).multiply(new BigDecimal(amount));
+        );
     }
 
     public BigDecimal getPrice() {
@@ -107,6 +119,7 @@ public class Item {
     }
 
     public String toString(){
-        return amount + " " + name + " " + price + "\n" + "sales tax: " + salesTax + "\n------------";
+        return amount + " " + name + " " + price + "\n" + "sales tax: " + salesTax +
+                "\nFinal price: " + fullPrice + "\n------------";
     }
 }
