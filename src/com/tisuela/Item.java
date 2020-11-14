@@ -119,7 +119,6 @@ public class Item {
     }
 
     public String toString(){
-        return amount + " " + name + " " + price + "\n" + "sales tax: " + salesTax +
-                "\nFinal price: " + fullPrice + "\n------------";
+        return amount + " " + name + ": " + fullPrice;
     }
 }

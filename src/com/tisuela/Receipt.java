@@ -92,7 +92,7 @@ public class Receipt {
 
 
     public String toString(){
-        StringBuilder result = new StringBuilder("--- Receipt ---\n");
+        StringBuilder result = new StringBuilder("");
         for (Item item: items){
             result.append(item.toString()).append("\n");
         }
