@@ -49,7 +49,7 @@ public class Main {
                 itemAmount = Integer.parseInt(itemInputWords[0]);
             }
             catch(NumberFormatException e) {
-
+                System.out.println("Amount was not a whole number. Please specify a whole number for amount.");
                 continue;
             }
 
