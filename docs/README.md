@@ -1,4 +1,4 @@
-# Liferay Challenge
+# [Liferay Challenge](http://liferay-challenge.tisuela.com/)
 This is Nathaniel Louis Tisuela's solution to the Sales Taxes Problem.
 
 My solution is a Java CLI application. 
