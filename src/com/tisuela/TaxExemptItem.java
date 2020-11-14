@@ -15,5 +15,13 @@ public class TaxExemptItem extends Item{
         this(name, price, 1);
     }
 
+    public TaxExemptItem(Item item){
+        /*
+        Construct from another item, which may have a different tax rate
+         */
+        super(item);
+        BigDecimal newTaxRate = new BigDecimal(0);
+        this.setTaxRate(newTaxRate);
+    }
 
 }

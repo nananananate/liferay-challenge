@@ -38,7 +38,7 @@ public class Item {
         this.price = new BigDecimal(price).setScale(
                 2,
                 RoundingMode.HALF_UP
-        );;
+        );
 
         // set salesTax before fullPrice
         this.setSalesTax();

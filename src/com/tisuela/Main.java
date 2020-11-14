@@ -1,32 +1,41 @@
 package com.tisuela;
 
+import java.util.Scanner;
+
 public class Main {
+
+
 
     public static void main(String[] args) {
 	// write your code here
-        Item testItem = new Item("test", 10);
-        System.out.println(testItem);
 
-        Item testTaxExemptItem = new TaxExemptItem("test Tax Exempt", 10);
-        System.out.println(testTaxExemptItem);
+        Receipt receipt = new Receipt();
 
-        ImportedItem testImportedTaxExemptItem = new ImportedItem(testTaxExemptItem);
-        System.out.println(testImportedTaxExemptItem);
+        Scanner scanner = new Scanner(System.in);
 
-        ImportedItem testImportedItem = new ImportedItem(testItem);
+        boolean flag = true;
 
-        System.out.println(testImportedItem);
-        System.out.println(testItem);
+        while (flag) {
 
+            System.out.println("Enter item (leave blank if done): ");
+            String itemInput = scanner.nextLine();
 
-        Receipt testReceipt = new Receipt();
+            if (itemInput.length() < 1){
+                break;
+            }
+            String[] itemInputWords = itemInput.split(" ", 2);
+            int itemAmount = Integer.parseInt(itemInputWords[0]);
+            String[] itemNameAndPrice = itemInputWords[1].split(" at ", 2);
 
-        testReceipt.addItem(testItem);
-        testReceipt.addItem(testImportedItem);
-        testReceipt.addItem(testTaxExemptItem);
-        testReceipt.addItem(testImportedTaxExemptItem);
+            String itemName = itemNameAndPrice[0];
 
-        System.out.println(testReceipt);
+            double itemPrice = Double.parseDouble(itemNameAndPrice[1]);
+            Item item = new Item(itemName, itemPrice, itemAmount);
+            receipt.addItem(item);
+        }
+
+        System.out.println(receipt);
+
 
     }
 }
