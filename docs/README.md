@@ -1,5 +1,5 @@
 # Liferay Challenge
-This is my solution to the Sales Taxes Problem.
+This is Nathaniel Louis Tisuela's solution to the Sales Taxes Problem.
 
 My solution is a Java CLI application. 
 
