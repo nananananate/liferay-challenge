@@ -14,6 +14,8 @@ cd liferay-challenge
 
 To run the CLI app (a `.jar` file), use these commands:
 
+Windows:
+
 ```
 java -jar .\out\artifacts\challenge_jar\challenge.jar
 ```
@@ -23,6 +25,7 @@ Linux/macOS:
 ```
 java -jar out/artifacts/challenge_jar/challenge.jar
 ```
+
 You should now see this:
 
 ```
